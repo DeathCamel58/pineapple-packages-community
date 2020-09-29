@@ -20,7 +20,7 @@ PKG_BUILD_PARALLEL:=1
 PKG_USE_MIPS16:=0
 
 include $(INCLUDE_DIR)/package.mk
-include ../../lang/golang/golang-package.mk
+include ../../../packages/lang/golang/golang-package.mk
 
 define Package/backdoorfactory/Default
   TITLE:=A MitM tool for inserting shellcode into all types of binaries on the wire.
