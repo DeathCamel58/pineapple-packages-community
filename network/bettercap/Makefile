@@ -1,14 +1,14 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=bettercap
-PKG_VERSION:=2.27.1
+PKG_VERSION:=2.28
 PKG_RELEASE:=1
 
 GO_PKG:=github.com/bettercap/bettercap
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/bettercap/bettercap/tar.gz/v${PKG_VERSION}?
-PKG_HASH:=dd4349a43486ec300a0f777f7c53b2fff608fb82dbba720c144b85538811405c
+PKG_HASH:=5bde85117679c6ed8b5469a5271cdd5f7e541bd9187b8d0f26dee790c37e36e9
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 
 PKG_LICENSE:=GPL-3.0
@@ -50,5 +50,4 @@ endef
 
 $(eval $(call GoBinPackage,bettercap))
 $(eval $(call BuildPackage,bettercap))
-
 
