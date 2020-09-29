@@ -1,13 +1,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=kismet-hak5
-PKG_VERSION:=2020-03-R1
+PKG_VERSION:=2020-09-R4
 PKG_RELEASE:=1
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/kismetwireless/kismet.git
-PKG_SOURCE_VERSION:=925cf90e0112a0bfc926e21e0fae4503ae3b7a78
+PKG_SOURCE_VERSION:=45b3c1441a7ac3b66700baf9f5ff7595bbc3960f
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.gz
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
 
@@ -52,6 +52,7 @@ define Build/Compile
 	$(MAKE) -C $(PKG_BUILD_DIR) \
 		LD="$(TARGET_CXX)" \
 		all
+	gzip -d $(PKG_BUILD_DIR)/conf/kismet_manuf.txt.gz
 endef
 
 define Package/kismet-hak5/install
@@ -70,7 +71,6 @@ define Package/kismet-hak5/install
 	$(INSTALL_CONF) $(PKG_BUILD_DIR)/conf/kismet_httpd.conf $(1)/etc/kismet
 	$(INSTALL_CONF) $(PKG_BUILD_DIR)/conf/kismet_logging.conf $(1)/etc/kismet
 	$(INSTALL_CONF) $(PKG_BUILD_DIR)/conf/kismet_memory.conf $(1)/etc/kismet
-	$(INSTALL_CONF) $(PKG_BUILD_DIR)/conf/kismet_storage.conf $(1)/etc/kismet
 	$(INSTALL_CONF) $(PKG_BUILD_DIR)/conf/kismet_uav.conf $(1)/etc/kismet
 	$(INSTALL_CONF) $(PKG_BUILD_DIR)/conf/kismet_manuf.txt $(1)/etc/kismet
 	cp -Rv $(PKG_BUILD_DIR)/http_data $(1)/etc/kismet/
