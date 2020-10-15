@@ -1,5 +1,5 @@
 # WiFi Pineapple Community Packages for MK7
-*This specific fork is being maintained by DeathCamel57.*
+*This specific fork is being maintained by DeathCamel57/DeathCamel58*
 
 This repository contains the OpenWrt packages for the WiFi Pineapple community repository. Packages found inside this
 repository will be available to download to a WiFi Pineapple via opkg.
