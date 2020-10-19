@@ -8,24 +8,28 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=ettercap
-PKG_VERSION:=0.8.3
+PKG_VERSION:=0.8.3.1
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://github.com/Ettercap/ettercap.git
-PKG_SOURCE_VERSION:=90f2a397966d721868a1fb49c5ecaba0f0af72d0
+PKG_SOURCE_URL:=https://github.com/Ettercap/ettercap/releases/download/v$(PKG_VERSION)/
+PKG_HASH:=6186e87e320cc12c81fb5cbe47335885a3e51f90681e8b79f34ceae66e99becf
 
-PKG_FIXUP:=autoreconf
-PKG_INSTALL:=1
-PKG_BUILD_PARALLEL:=1
+CMAKE_INSTALL:=1
+
+PKG_MAINTAINER:=Dylan Corrales <info@randomcpu.com>
+PKG_LICENSE:=GPL-2.0
+PKG_LICENSE_FILES:=LICENSE
+
+PKG_BUILD_DEPENDS:=geoip-api-c libiconv-full
 
 include $(INCLUDE_DIR)/package.mk
-include $(INCLUDE_DIR)/nls.mk
+include $(INCLUDE_DIR)/cmake.mk
 
 define Package/ettercap
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=+libpcap +libnet1 +libopenssl +libpcre +libncurses +libltdl +libpthread +zlib
+  DEPENDS:=+libpcap +libnet-1.2.x +libopenssl +libpcre +libncurses +libltdl +libpthread +zlib +geoip-api-c +curl +libiconv-full
   TITLE:=Ettercap is a suite for man in the middle attacks on LAN.
   URL:=http://ettercap.sourceforge.net
 endef
@@ -38,36 +42,34 @@ define Package/ettercap/description
 endef
 
 define Package/ettercap/conffiles
-/etc/etter.conf
+    /etc/ettercap/etter.conf
 endef
 
 define Build/Prepare
 	$(call Build/Prepare/Default)
-	# remove default optimization flags set by configure
-	$(SED) 's,DEBUG_FLAGS=.*,DEBUG_FLAGS=,g' $(PKG_BUILD_DIR)/configure
 endef
 
-CONFIGURE_ARGS += \
-	--with-libpcap="$(STAGING_DIR)/usr" \
-	--with-libnet="$(STAGING_DIR)/usr/lib/libnet-1.1.x" \
-	--with-openssl="$(STAGING_DIR)/usr" \
-	--with-libpcre="$(STAGING_DIR)/usr" \
-	--with-iconv="$(ICONV_PREFIX)" \
-	--with-libncurses="$(STAGING_DIR)/usr" \
-	--disable-gtk \
-	--disable-debug \
-	--enable-plugins
+TARGET_CFLAGS += -I$(STAGING_DIR)/usr/lib/libiconv-full/include -liconv
+TARGET_LDFLAGS += -L$(STAGING_DIR)/usr/lib/libiconv-full/lib
 
-MAKE_FLAGS += \
+CMAKE_OPTIONS += -S . -B build \
+    -DENABLE_GTK=OFF \
+    -DENABLE_IPV6=ON \
+    -DINSTALL_DESKTOP=OFF \
+    -DENABLE_GEOIP=OFF
+    
+MAKE_FLAGS += -C build \
 	DESTDIR="$(PKG_INSTALL_DIR)"
 
 define Package/ettercap/install
-	$(INSTALL_DIR) $(1)/etc
-	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/etc/etter.conf $(1)/etc/
+	$(INSTALL_DIR) $(1)/etc/ettercap
+	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/etc/ettercap/etter.{conf,dns,mdns,nbns} $(1)/etc/ettercap/
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/etter{cap,filter,log} $(1)/usr/bin/
 	$(INSTALL_DIR) $(1)/usr/lib/ettercap
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/ettercap/*.so $(1)/usr/lib/ettercap/
+	$(INSTALL_DIR) $(1)/usr/lib
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/*.so{,.0,.0.8.3.1} $(1)/usr/lib/ettercap/
 	$(INSTALL_DIR) $(1)/usr/share/ettercap
 	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/usr/share/ettercap/* $(1)/usr/share/ettercap/
 endef
