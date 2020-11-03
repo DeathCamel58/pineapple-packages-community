@@ -10,11 +10,11 @@ include $(TOPDIR)/rules.mk
 PKG_NAME:=mdk3
 PKG_VERSION:=v6
 PKG_RELEASE:=2
-PKG_MD5SUM:=67705a814ded2a2e6f70522ca0dc6da9
+PKG_MD5SUM:=9c605890827334e63123bb18c6715962a9b5973e4eacd3d480cad4059f3bdab1
 
-PKG_BUILD_DIR:=$(BUILD_DIR)/mdk3-$(PKG_VERSION)
-PKG_SOURCE_URL:=http://homepages.tu-darmstadt.de/~p_larbig/wlan/
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
+PKG_BUILD_DIR:=$(BUILD_DIR)/mdk3-master-master
+PKG_SOURCE_URL:=https://github.com/charlesxsh/mdk3-master/archive/
+PKG_SOURCE:=master.zip
 
 PKG_BUILD_PARALLEL:=1
 
