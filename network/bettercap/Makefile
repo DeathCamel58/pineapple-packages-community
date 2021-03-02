@@ -8,7 +8,7 @@ GO_PKG:=github.com/bettercap/bettercap
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/bettercap/bettercap/tar.gz/v${PKG_VERSION}?
-PKG_HASH:=c414be98a48d9f279460b325dddaef8479132a1470c6f305790d79e04dac1297
+PKG_HASH:=6bd13803d3fd2ed12c36a518e2822ed6408b7fafbd4510b6a2a9fa3ffaeecc55
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 
 PKG_LICENSE:=GPL-3.0
