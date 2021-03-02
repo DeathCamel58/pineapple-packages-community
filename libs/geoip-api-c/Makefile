@@ -11,11 +11,15 @@ PKG_NAME:=geoip-api-c
 PKG_VERSION:=1.6.12
 PKG_RELEASE:=1
 
-PKG_SOURCE:=GeoIP-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://github.com/maxmind/geoip-api-c/releases/download/v$(PKG_VERSION)/
-PKG_HASH:=1dfb748003c5e4b7fd56ba8c4cd786633d5d6f409547584f6910398389636f80
+PKG_SOURCE:=v$(PKG_VERSION).tar.gz
+PKG_SOURCE_URL:=https://api.github.com/repos/maxmind/geoip-api-c/tarball/
+PKG_HASH:=49149fd84a02d5e2beafaeca33eb73bc84f9004265f9ab14797f6bc8aea84d4b
+PKG_BUILD_DIR:=$(BUILD_DIR)/geoip-api-c-$(PKG_VERSION)
 
-PKG_BUILD_DIR:=$(BUILD_DIR)/GeoIP-$(PKG_VERSION)
+# Fix automake scripts automagically per <https://openwrt.org/docs/guide-developer/packages#pkg_fixup>
+PKG_FIXUP:=autoreconf
+PKG_FIXUP:=patch-libtool
+PKG_FIXUP:=gettext-version
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -32,10 +36,6 @@ define Package/geoip-api-c/description
 endef
 
 TARGET_LDFLAGS += $(LIBRPC)
-
-define Build/Configure
-  $(call Build/Configure/Default,--with-linux-headers=$(LINUX_DIR))
-endef
 
 define Build/Compile
 	$(MAKE) -C $(PKG_BUILD_DIR) \
