@@ -8,7 +8,7 @@ GO_PKG:=github.com/Binject/backdoorfactory
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/Binject/backdoorfactory/tar.gz/v${PKG_VERSION}?
-PKG_HASH:=47bd0ea9bc390843e29e44873a298785a75ad08cc75d5c730b5007386b188c54
+PKG_HASH:=77507af64b5c8ea746a97e7c0bce217c6db791a888126952b0ea54c331dfdd48
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 
 PKG_LICENSE:=GPL-3.0
