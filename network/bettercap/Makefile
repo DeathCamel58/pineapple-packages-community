@@ -2,7 +2,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=bettercap
 PKG_VERSION:=2.29
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 GO_PKG:=github.com/bettercap/bettercap
 

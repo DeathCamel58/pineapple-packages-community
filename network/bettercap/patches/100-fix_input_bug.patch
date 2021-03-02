@@ -1,0 +1,26 @@
+Index: bettercap-2.29/go.mod
+===================================================================
+--- bettercap-2.29.orig/go.mod
++++ bettercap-2.29/go.mod
+@@ -8,7 +8,7 @@ require (
+ 	github.com/antchfx/xpath v1.1.10 // indirect
+ 	github.com/bettercap/gatt v0.0.0-20191018133023-569d3d9372bb
+ 	github.com/bettercap/nrf24 v0.0.0-20190219153547-aa37e6d0e0eb
+-	github.com/bettercap/readline v0.0.0-20180208083827-9cec905dd291
++	github.com/bettercap/readline v0.0.0-20210228151553-655e48bcb7bf
+ 	github.com/bettercap/recording v0.0.0-20190408083647-3ce1dcf032e3
+ 	github.com/chifflier/nfqueue-go v0.0.0-20170228160439-61ca646babef
+ 	github.com/chzyer/logex v1.1.10 // indirect
+Index: bettercap-2.29/go.sum
+===================================================================
+--- bettercap-2.29.orig/go.sum
++++ bettercap-2.29/go.sum
+@@ -25,6 +25,8 @@ github.com/bettercap/nrf24 v0.0.0-201902
+ github.com/bettercap/nrf24 v0.0.0-20190219153547-aa37e6d0e0eb/go.mod h1:g6WiaSRgMTiChuk7jYyFSEtpgaw1F0wAsBfspG3bu0M=
+ github.com/bettercap/readline v0.0.0-20180208083827-9cec905dd291 h1:6GtREdpf6N/trykGvhwfr0nyo3V/yncz0JvNbu+z7S8=
+ github.com/bettercap/readline v0.0.0-20180208083827-9cec905dd291/go.mod h1:03rWiUf60r1miMVzMEtgtkq7RdZniecZFw3/Zgvyxcs=
++github.com/bettercap/readline v0.0.0-20210228151553-655e48bcb7bf h1:pwGPRc5PIp4KCF9QbKn0iLVMhfigUMw4IzGZEZ81m1I=
++github.com/bettercap/readline v0.0.0-20210228151553-655e48bcb7bf/go.mod h1:03rWiUf60r1miMVzMEtgtkq7RdZniecZFw3/Zgvyxcs=
+ github.com/bettercap/recording v0.0.0-20190408083647-3ce1dcf032e3 h1:pC4ZAk7UtDIbrRKzMMiIL1TVkiKlgtgcJodqKB53Rl4=
+ github.com/bettercap/recording v0.0.0-20190408083647-3ce1dcf032e3/go.mod h1:kqVwnx6DKuOHMZcBnzsgp2Lq2JZHDtFtm92b5hxdRaM=
+ github.com/chifflier/nfqueue-go v0.0.0-20170228160439-61ca646babef h1:uhLIhHeIRlFbAI1mOHkz3vN23T+QdhA9MgnvnJaQyL0=
