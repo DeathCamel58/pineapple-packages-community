@@ -70,7 +70,9 @@ define Package/kismet-remotecap-hak5/install
 	$(INSTALL_CONF) $(PKG_BUILD_DIR)/conf/kismet_memory.conf $(1)/etc/kismet
 	$(INSTALL_CONF) $(PKG_BUILD_DIR)/conf/kismet_uav.conf $(1)/etc/kismet
 	$(INSTALL_CONF) $(PKG_BUILD_DIR)/conf/kismet_manuf.txt $(1)/etc/kismet
-	cp -Rv $(PKG_BUILD_DIR)/http_data $(1)/etc/kismet/
+
+	$(INSTALL_DIR) $(1)/usr/share/kismet/httpd/
+	cp -Rv $(PKG_BUILD_DIR)/http_data/* $(1)/usr/share/kismet/httpd/
 endef
 
 $(eval $(call BuildPackage,kismet-remotecap-hak5))
