@@ -1,13 +1,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=kismet-remotecap-hak5
-PKG_VERSION:=2020-09-R4
+PKG_VERSION:=2021-05-R1
 PKG_RELEASE:=1
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/kismetwireless/kismet.git
-PKG_SOURCE_VERSION:=45b3c1441a7ac3b66700baf9f5ff7595bbc3960f
+PKG_SOURCE_VERSION:=149efea60214f473c9ec9b16e50c3b22a8a874d0
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.gz
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
 
@@ -22,7 +22,7 @@ define Package/kismet-remotecap-hak5
   CATEGORY:=Network
   TITLE:=Kismet Remote Capture (Hak5)
   URL:=https://www.kismetwireless.net/
-  DEPENDS:=+libpthread +libpcap +libpcre +libmicrohttpd +libnl +libcap +libstdcpp +libncurses +libsqlite3 +zlib +protobuf-lite +libprotobuf-c +libdw
+  DEPENDS:=+libpthread +libpcap +libpcre +libmicrohttpd +libnl +libcap +libstdcpp +libncurses +libsqlite3 +zlib +protobuf-lite +libprotobuf-c +libdw +libwebsockets-full
   SUBMENU:=wireless
 endef
 
